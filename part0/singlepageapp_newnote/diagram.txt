@@ -1,0 +1,52 @@
+title New Note on SPA - Diagram
+
+note over browser:
+user starts typing in the
+text field
+end note
+
+note over browser:
+user clicks on "save" 
+end note
+
+note over browser:
+browser retrieves the text
+from the text field
+end note
+
+note over browser:
+browser stores the text and
+the current date in the
+local array "notes"
+end note
+
+note over browser:
+browser deletes the text
+from the text field
+end note
+
+note over browser:
+browser repaints its content
+end note
+
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+
+note over server:
+server retrieves the note in
+the request body
+end note
+
+note over server:
+server stores in array "notes"
+the retrieved note
+end note
+
+server-->browser: status code 201
+
+note over browser:
+browser receives response
+{ message: 'note created' }
+end note
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/favicon.ico
+server-->browser: icon image
