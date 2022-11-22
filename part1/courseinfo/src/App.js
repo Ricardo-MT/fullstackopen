@@ -42,16 +42,13 @@ const App = () => {
     name: 'State of a component',
     exercises: 14
   };
+  const parts = [part1, part2, part3];
 
   return (
     <div>
       <Header course={course} />
-      <Content sections={[
-        part1,
-        part2,
-        part3,
-        ]}/>
-      <Total total={part1.exercises + part2.exercises + part3.exercises}/>
+      <Content sections={parts}/>
+      <Total total={parts.map(p => p.exercises).reduce((p, c) => p + c)}/>
     </div>
   );
 }
