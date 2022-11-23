@@ -36,11 +36,11 @@ const Statistics = ({good, neutral, bad}) => {
           noFeedback :
           <div>
             {spacer}
-            <FeedbackCounter label="good" info={good} />
+            <StatisticLine  label="good" info={good} />
             {spacer}
-            <FeedbackCounter label="neutral" info={neutral} />
+            <StatisticLine  label="neutral" info={neutral} />
             {spacer}
-            <FeedbackCounter label="bad" info={bad} />
+            <StatisticLine  label="bad" info={bad} />
             {spacer}
           </div>
       }
@@ -59,13 +59,13 @@ const AdvancedStatistics = ({good, neutral, bad}) => {
           noFeedback :
           <div>
             {spacer}
-            <FeedbackCounter label="all" info={all} />
+            <StatisticLine  label="all" info={all} />
             <br/>
             {spacer}
-            <FeedbackCounter label="average" info={(good - bad) / all} />
+            <StatisticLine  label="average" info={(good - bad) / all} />
             <br/>
             {spacer}
-            <FeedbackCounter label="positive" info={(good / all) * 100 + ' %'} />
+            <StatisticLine  label="positive" info={(good / all) * 100 + ' %'} />
             <br/>
             {spacer}
           </div>
@@ -82,7 +82,7 @@ const Button = ({label, onClick}) => {
   );
 }
 
-const FeedbackCounter = ({label, info}) => <><span>{label}: {info}</span></>
+const StatisticLine  = ({label, info}) => <><span>{label}: {info}</span></>
 
 const NoFeedback = () => <div><span>No feedback given</span></div>
 
