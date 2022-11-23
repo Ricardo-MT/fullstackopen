@@ -20,7 +20,6 @@ const App = () => {
         {spacer}
       </div>
       <Statistics good={good} neutral={neutral} bad={bad} />
-      <AdvancedStatistics good={good} neutral={neutral} bad={bad} />
     </div>
   )
 }
@@ -28,47 +27,24 @@ const App = () => {
 export default App;
 
 const Statistics = ({good, neutral, bad}) => {
+  const all = good + neutral + bad;
+
   return (
     <>
       <SectionHeader label={'Statistics'}/>
       {
         good + neutral + bad === 0 ? 
           noFeedback :
-          <div>
-            {spacer}
-            <StatisticLine  label="good" info={good} />
-            {spacer}
-            <StatisticLine  label="neutral" info={neutral} />
-            {spacer}
-            <StatisticLine  label="bad" info={bad} />
-            {spacer}
-          </div>
-      }
-    </>
-  );
-}
-
-const AdvancedStatistics = ({good, neutral, bad}) => {
-  const all = good + neutral + bad;
-
-  return (
-    <>
-      <SectionHeader label={'More statistics'}/>
-      {
-        all === 0 ?
-          noFeedback :
-          <div>
-            {spacer}
-            <StatisticLine  label="all" info={all} />
-            <br/>
-            {spacer}
-            <StatisticLine  label="average" info={(good - bad) / all} />
-            <br/>
-            {spacer}
-            <StatisticLine  label="positive" info={(good / all) * 100 + ' %'} />
-            <br/>
-            {spacer}
-          </div>
+          <table>
+            <tbody>
+              <StatisticLine  label="good" info={good} />
+              <StatisticLine  label="neutral" info={neutral} />
+              <StatisticLine  label="bad" info={bad} />
+              <StatisticLine  label="all" info={all} />
+              <StatisticLine  label="average" info={(good - bad) / all} />
+              <StatisticLine  label="positive" info={(good / all) * 100 + ' %'} />
+            </tbody>
+          </table>
       }
     </>
   );
@@ -82,7 +58,15 @@ const Button = ({label, onClick}) => {
   );
 }
 
-const StatisticLine  = ({label, info}) => <><span>{label}: {info}</span></>
+const StatisticLine  = ({label, info}) =>
+<tr>
+  <td>
+    <span>{label}</span>
+  </td>
+  <td>
+    <span>{info}</span>
+  </td>
+</tr>;
 
 const NoFeedback = () => <div><span>No feedback given</span></div>
 
