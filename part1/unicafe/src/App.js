@@ -7,6 +7,8 @@ const App = () => {
 
   const handleClick = (state, setter) => () => setter(state + 1);
 
+  const all = good + neutral + bad;
+
   return (
     <div>
       <SectionHeader label={'Give feedback'}/>
@@ -22,11 +24,24 @@ const App = () => {
       <SectionHeader label={'Statistics'}/>
       <div>
         {spacer}
-        <FeedbackCounter label="good" count={good} />
+        <FeedbackCounter label="good" info={good} />
         {spacer}
-        <FeedbackCounter label="neutral" count={neutral} />
+        <FeedbackCounter label="neutral" info={neutral} />
         {spacer}
-        <FeedbackCounter label="bad" count={bad} />
+        <FeedbackCounter label="bad" info={bad} />
+        {spacer}
+      </div>
+      <SectionHeader label={'More statistics'}/>
+      <div>
+        {spacer}
+        <FeedbackCounter label="all" info={all} />
+        <br/>
+        {spacer}
+        <FeedbackCounter label="average" info={all == 0 ? 0 : (good - bad) / all} />
+        <br/>
+        {spacer}
+        <FeedbackCounter label="positive" info={(all == 0 ? 0 : good / all) * 100 + ' %'} />
+        <br/>
         {spacer}
       </div>
     </div>
@@ -43,7 +58,7 @@ const Button = ({label, onClick}) => {
   );
 }
 
-const FeedbackCounter = ({label, count}) => <><span>{label}: {count}</span></>
+const FeedbackCounter = ({label, info}) => <><span>{label}: {info}</span></>
 
 const Spacer = () => <div style={{height: 10, width: 10, display: 'inline-block'}} />
 
